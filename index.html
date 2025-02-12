@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Bruno e Emili</title>
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Heart_coraz%C3%B3n.svg/1024px-Heart_coraz%C3%B3n.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -53,21 +53,27 @@
             changeImage();
         }
     </script>
+    <style>
+        body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+    </style>
 </head>
-<body class="font-sans bg-black text-white">
-    <section id="home" class="h-screen flex flex-col items-center justify-center bg-black text-white text-center p-4">
-        <div class="mt-4">
-            <img id="slideshow" src="" alt="Memórias do casal" class="rounded-lg shadow-lg w-[90%] h-auto max-w-[414px] border-4 border-red-500">
+<body class="font-sans bg-black text-white flex flex-col items-center justify-start min-h-screen px-4">
+    <section id="home" class="w-full max-w-[414px] flex flex-col items-center text-center">
+        <div class="mt-10">
+            <img id="slideshow" src="" alt="Memórias do casal" class="rounded-lg shadow-lg w-full h-auto border-4 border-red-500">
         </div>
         <p class="text-xl mt-6 font-bold">Juntos desde:</p>
         <p class="text-xl font-semibold">19/10/2024</p>
         <p class="text-xl mt-2 font-bold">Tempo juntos:</p>
         <p class="text-xl"><span id="cronometro" class="font-bold">0d 0h 0m 0s</span></p>
-        <p class="text-base mt-6 max-w-xs px-4">Nos conhecemos de forma inesperada, mas desde aquele momento sabíamos que algo especial estava acontecendo. Cada dia ao seu lado tem sido uma nova aventura, repleta de amor, carinho e companheirismo. Este é apenas o começo da nossa linda jornada juntos. ❤️</p>
+        <p class="text-base mt-6 px-6">Nos conhecemos de forma inesperada, mas desde aquele momento sabíamos que algo especial estava acontecendo. Cada dia ao seu lado tem sido uma nova aventura, repleta de amor, carinho e companheirismo. Este é apenas o começo da nossa linda jornada juntos. ❤️</p>
         
         <!-- Player de Música Estilo Spotify -->
         <div class="mt-8 w-full flex justify-center">
-            <iframe style="border-radius:12px" src="Music/dias-de-luta-dias-de-glória.mp3" width="90%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            <iframe style="border-radius:12px" src="Music/dias-de-luta-dias-de-glória.mp3" width="100%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
     </section>
 </body>
