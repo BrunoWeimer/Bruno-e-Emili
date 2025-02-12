@@ -26,6 +26,7 @@
         window.onload = function() {
             startTimer();
             startSlideshow();
+            document.getElementById('audio').play();
         };
         
         function startSlideshow() {
@@ -57,13 +58,13 @@
 <body class="font-sans bg-black text-white">
     <nav class="bg-red-600 text-white p-4 fixed w-full shadow-md">
         <div class="container mx-auto flex justify-center">
-            <span class="text-lg font-bold">Nossa História</span>
+            <span class="text-lg font-bold">Bruno e Emili 💕</span>
         </div>
     </nav>
     
-    <section id="home" class="h-screen flex flex-col items-center justify-center bg-black text-white text-center p-4">
+    <section id="home" class="h-screen flex flex-col items-center justify-center bg-black text-white text-center p-4 mt-12">
         <h1 class="text-3xl font-bold">Bruno e Emili 💕</h1>
-        <div class="mt-4">
+        <div class="mt-8">
             <img id="slideshow" src="" alt="Memórias do casal" class="rounded-lg shadow-lg w-[90%] h-auto max-w-[414px]">
         </div>
         <p class="text-xl mt-6 font-bold">Juntos desde:</p>
@@ -72,9 +73,12 @@
         <p class="text-xl"><span id="cronometro" class="font-bold">0d 0h 0m 0s</span></p>
         <p class="text-base mt-6 max-w-xs px-4">Nos conhecemos de forma inesperada, mas desde aquele momento sabíamos que algo especial estava acontecendo. Cada dia ao seu lado tem sido uma nova aventura, repleta de amor, carinho e companheirismo. Este é apenas o começo da nossa linda jornada juntos. ❤️</p>
         
-        <!-- Player de Música Estilo Spotify -->
+        <!-- Player de Música -->
         <div class="mt-8 w-full flex justify-center">
-            <iframe style="border-radius:12px" src="Music/dias-de-luta-dias-de-glória.mp3" width="90%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            <audio id="audio" controls autoplay>
+                <source src="Music/dias-de-luta-dias-de-glória.mp3" type="audio/mpeg">
+                Seu navegador não suporta áudio.
+            </audio>
         </div>
     </section>
 </body>
