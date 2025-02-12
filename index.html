@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bruno e Emili</title>
-    <link rel="icon" type="image/png" href="Images/ame.png">
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Heart_coraz%C3%B3n.svg/1024px-Heart_coraz%C3%B3n.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         function startTimer() {
@@ -26,21 +26,22 @@
         window.onload = function() {
             startTimer();
             startSlideshow();
-            document.getElementById('audio').play();
         };
         
         function startSlideshow() {
             let images = [
-                "Images/WhatsApp Image 2025-02-12 at 00.01.14.jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.15 (1).jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.15.jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.16.jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.17 (1).jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.17 (2).jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.17.jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.19 (1).jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.19.jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.20.jpeg",
+                "https://source.unsplash.com/414x736/?couple",
+                "https://source.unsplash.com/414x736/?love",
+                "https://source.unsplash.com/414x736/?romance",
+                "https://source.unsplash.com/414x736/?together",
+                "https://source.unsplash.com/414x736/?valentines",
+                "https://source.unsplash.com/414x736/?relationship",
+                "https://source.unsplash.com/414x736/?kiss",
+                "https://source.unsplash.com/414x736/?happiness",
+                "https://source.unsplash.com/414x736/?wedding",
+                "https://source.unsplash.com/414x736/?heart",
+                "https://source.unsplash.com/414x736/?date",
+                "https://source.unsplash.com/414x736/?romantic"
             ];
             let imgElement = document.getElementById('slideshow');
             let index = 0;
@@ -58,29 +59,24 @@
 <body class="font-sans bg-black text-white">
     <nav class="bg-red-600 text-white p-4 fixed w-full shadow-md">
         <div class="container mx-auto flex justify-center">
-            <span class="text-lg font-bold">Bruno e Emili 💕</span>
+            <span class="text-lg font-bold">Nossa História</span>
         </div>
     </nav>
     
-    <section id="home" class="h-screen flex flex-col items-center justify-center bg-black text-white text-center p-4 mt-12">
-        <div class="bg-red-600 text-white px-4 py-2 rounded-lg shadow-md">
-            <h1 class="text-3xl font-bold">Bruno e Emili 💕</h1>
+    <section id="home" class="h-screen flex flex-col items-center justify-center bg-black text-white text-center p-4">
+        <h1 class="text-3xl font-bold">Bruno e Emili 💕</h1>
+        <div class="mt-4">
+            <img id="slideshow" src="" alt="Memórias do casal" class="rounded-lg shadow-lg w-[90%] h-auto max-w-[414px]">
         </div>
         <p class="text-xl mt-6 font-bold">Juntos desde:</p>
         <p class="text-xl font-semibold">19/10/2024</p>
         <p class="text-xl mt-2 font-bold">Tempo juntos:</p>
         <p class="text-xl"><span id="cronometro" class="font-bold">0d 0h 0m 0s</span></p>
-        <div class="mt-8">
-            <img id="slideshow" src="" alt="Memórias do casal" class="rounded-lg shadow-lg w-[90%] h-auto max-w-[414px]">
-        </div>
         <p class="text-base mt-6 max-w-xs px-4">Nos conhecemos de forma inesperada, mas desde aquele momento sabíamos que algo especial estava acontecendo. Cada dia ao seu lado tem sido uma nova aventura, repleta de amor, carinho e companheirismo. Este é apenas o começo da nossa linda jornada juntos. ❤️</p>
         
-        <!-- Player de Música -->
+        <!-- Player de Música Estilo Spotify -->
         <div class="mt-8 w-full flex justify-center">
-            <audio id="audio" controls autoplay>
-                <source src="Music/dias-de-luta-dias-de-glória.mp3" type="audio/mpeg">
-                Seu navegador não suporta áudio.
-            </audio>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1PzJz9ptzFRw17v6JrT3iY?utm_source=generator" width="90%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
     </section>
 </body>
