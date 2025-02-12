@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Relacionamento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function startTimer() {
+            let timerElement = document.getElementById('cronometro');
+            let startDate = new Date('2024-10-19T00:00:00');
+            function updateTimer() {
+                let now = new Date();
+                let diff = Math.floor((now - startDate) / 1000);
+                let days = Math.floor(diff / (3600 * 24));
+                let hours = Math.floor((diff % (3600 * 24)) / 3600);
+                let minutes = Math.floor((diff % 3600) / 60);
+                let seconds = diff % 60;
+                timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+            setInterval(updateTimer, 1000);
+            updateTimer();
+        }
+        
+        window.onload = function() {
+            startTimer();
+            startSlideshow();
+        };
+        
+        function startSlideshow() {
+            let images = [
+                "https://source.unsplash.com/414x736/?couple",
+                "https://source.unsplash.com/414x736/?love",
+                "https://source.unsplash.com/414x736/?romance",
+                "https://source.unsplash.com/414x736/?together",
+                "https://source.unsplash.com/414x736/?valentines",
+                "https://source.unsplash.com/414x736/?relationship"
+            ];
+            let imgElement = document.getElementById('slideshow');
+            let index = 0;
+            
+            function changeImage() {
+                imgElement.src = images[index];
+                index = (index + 1) % images.length;
+            }
+            
+            setInterval(changeImage, 5000);
+            changeImage();
+        }
+    </script>
+</head>
+<body class="font-sans bg-black text-white">
+    <nav class="bg-red-600 text-white p-4 fixed w-full shadow-md">
+        <div class="container mx-auto flex justify-center">
+            <span class="text-lg font-bold">Nossa História</span>
+        </div>
+    </nav>
+    
+    <section id="home" class="h-screen flex flex-col items-center justify-center bg-black text-white text-center p-4">
+        <h1 class="text-3xl font-bold">Nosso Amor ❤️</h1>
+        <div class="mt-4">
+            <img id="slideshow" src="" alt="Memórias do casal" class="rounded-lg shadow-lg w-[90%] h-auto max-w-[414px]">
+        </div>
+        <p class="text-xl mt-6 font-bold">Juntos desde:</p>
+        <p class="text-xl"><span id="cronometro" class="font-bold">0d 0h 0m 0s</span></p>
+        <p class="text-base mt-6 max-w-xs px-4">Nos conhecemos de forma inesperada, mas desde aquele momento sabíamos que algo especial estava acontecendo. Cada dia ao seu lado tem sido uma nova aventura, repleta de amor, carinho e companheirismo. Este é apenas o começo da nossa linda jornada juntos. ❤️</p>
+        
+        <!-- Player de Música Estilo Spotify -->
+        <div class="mt-8 w-full flex justify-center">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1PzJz9ptzFRw17v6JrT3iY?utm_source=generator" width="90%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+    </section>
+</body>
+</html>
