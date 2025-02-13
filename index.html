@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Heart_coraz%C3%B3n.svg/1024px-Heart_coraz%C3%B3n.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-          function startTimer() {
+        function startTimer() {
             let startDate = new Date('2024-10-19T00:00:00');
             function updateTimer() {
                 let now = new Date();
@@ -35,7 +35,6 @@
             updateTimer();
         }
 
-
         function startSlideshow() {
             let images = [
                 "Images/WhatsApp Image 2025-02-12 at 00.01.14.jpeg",
@@ -61,39 +60,16 @@
             changeImage();
         }
 
-        function showMotivo() {
-            const motivos = [
-                "Porque você me faz sorrir todos os dias.",
-                "Porque você é a pessoa mais especial da minha vida.",
-                "Porque você me inspira a ser melhor.",
-                "Porque você me entende como ninguém.",
-                "Porque você ilumina meus dias com seu amor.",
-                "Porque você é minha melhor companhia.",
-                "Porque você me faz acreditar no amor verdadeiro.",
-                "Porque você é única e incrível.",
-                "Porque você me completa de todas as formas.",
-                "Porque você é a razão da minha felicidade.",
-                "Porque você tem um coração gigante e cheio de amor.",
-                "Porque você me faz sentir seguro(a) e amado(a).",
-                "Porque você transforma meus dias com sua presença.",
-                "Porque você me apoia em todos os momentos.",
-                "Porque você me faz rir até nos dias mais difíceis.",
-                "Porque você é minha paz e minha alegria.",
-                "Porque você me faz sentir que posso conquistar o mundo.",
-                "Porque você é a melhor coisa que já me aconteceu.",
-                "Porque você me faz acreditar que o amor pode durar para sempre.",
-                "Porque você é simplesmente perfeita para mim."
-            ];
-            const motivoAleatorio = motivos[Math.floor(Math.random() * motivos.length)];
-            alert(motivoAleatorio);
-        }
-
-        window.onload = startTimer;
+        window.onload = function() {
+            startTimer();
+            startSlideshow();
+        };
     </script>
     <style>
         body { max-width: 100vw; overflow-x: hidden; }
         .timer-box { background-color: #111; padding: 20px; border-radius: 10px; text-align: center; }
         .timer-box span { font-size: 24px; font-weight: bold; display: block; }
+        #slideshow { transition: opacity 1s ease-in-out; }
     </style>
 </head>
 <body class="font-sans bg-black text-white flex flex-col items-center justify-start min-h-screen px-4">
@@ -104,13 +80,7 @@
         <div class="timer-box"><span id="hours">0</span>horas</div>
         <div class="timer-box"><span id="minutes">0</span>minutos</div>
         <div class="timer-box"><span id="seconds">0</span>segundos</div>
-        }
-        #slideshow {
-            transition: opacity 1s ease-in-out;
-        }
-    </style>
-</head>
-<body class="font-sans bg-black text-white flex flex-col items-center justify-start min-h-screen px-4">
+    </section>
     <section id="home" class="w-full max-w-[414px] flex flex-col items-center text-center">
         <div class="mt-10">
             <img id="slideshow" src="" alt="Memórias do casal" class="rounded-lg shadow-lg w-full h-auto border-4 border-red-500">
@@ -118,22 +88,6 @@
         <p class="text-xl mt-6 font-bold bg-red-500 text-white px-4 py-2 rounded-lg">Bruno e Emili 💕</p>
         <p class="text-xl mt-4 font-bold">Compartilhando momentos desde:</p>
         <p class="text-xl font-semibold">19/10/2024</p>
-        <p class="text-xl mt-2 font-bold">Tempo juntos:</p>
-        <p class="text-xl"><span id="cronometro" class="font-bold">0d 0h 0m 0s</span></p>
-        <p class="text-base mt-6 px-6">Eu amo compartilhar a vida com você. Cada momento ao seu lado é uma experiência única, cheia de risos, aprendizados e um amor que cresce a cada dia. Seu sorriso ilumina meu caminho, e o simples fato de estar com você torna tudo mais especial. Você é meu apoio, meu amor, minha inspiração. Agradeço todos os dias por ter você ao meu lado, eu amo muito você. 💗</p>
-
-        <!-- Botão "Motivos para amar você" -->
-        <button onclick="showMotivo()" class="mt-6 bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300">
-            Motivos para amar você
-        </button>
-
-        <!-- Player de Música com autoplay -->
-        <div class="mt-8 w-full flex justify-center">
-            <audio controls autoplay class="w-full">
-                <source src="Music/maria.mp3" type="audio/mpeg">
-                Seu navegador não suporta o elemento de áudio.
-            </audio>
-        </div>
     </section>
 </body>
 </html>
