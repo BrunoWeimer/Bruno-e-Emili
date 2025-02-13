@@ -22,12 +22,7 @@
             setInterval(updateTimer, 1000);
             updateTimer();
         }
-        
-        window.onload = function() {
-            startTimer();
-            startSlideshow();
-        };
-        
+
         function startSlideshow() {
             let images = [
                 "Images/WhatsApp Image 2025-02-12 at 00.01.14.jpeg",
@@ -43,15 +38,37 @@
             ];
             let imgElement = document.getElementById('slideshow');
             let index = 0;
-            
+
             function changeImage() {
                 imgElement.src = images[index];
                 index = (index + 1) % images.length;
             }
-            
+
             setInterval(changeImage, 5000);
             changeImage();
         }
+
+        function showMotivo() {
+            const motivos = [
+                "Porque você me faz sorrir todos os dias.",
+                "Porque você é a pessoa mais especial da minha vida.",
+                "Porque você me inspira a ser melhor.",
+                "Porque você me entende como ninguém.",
+                "Porque você ilumina meus dias com seu amor.",
+                "Porque você é minha melhor companhia.",
+                "Porque você me faz acreditar no amor verdadeiro.",
+                "Porque você é única e incrível.",
+                "Porque você me completa de todas as formas.",
+                "Porque você é a razão da minha felicidade."
+            ];
+            const motivoAleatorio = motivos[Math.floor(Math.random() * motivos.length)];
+            alert(motivoAleatorio);
+        }
+
+        window.onload = function() {
+            startTimer();
+            startSlideshow();
+        };
     </script>
     <style>
         body {
@@ -73,8 +90,13 @@
         <p class="text-xl font-semibold">19/10/2024</p>
         <p class="text-xl mt-2 font-bold">Tempo juntos:</p>
         <p class="text-xl"><span id="cronometro" class="font-bold">0d 0h 0m 0s</span></p>
-        <p class="text-base mt-6 px-6">Eu amo compartilhar a vida com você. Cada momento ao seu lado é uma experiência única, cheia de risos, aprendizados e um amor que cresce a cada dia. Seu sorriso ilumina meu caminho, e o simples fato de estar com você torna tudo mais especial. Você é meu apoio, meu amor, minha inspiração. Agradeço todos os dias por ter você ao meu lado, eu amo muito você. 💗</p>
-        
+        <p class="text-base mt-6 px-6">Nos conhecemos de forma inesperada, mas desde aquele momento sabíamos que algo especial estava acontecendo. Cada dia ao seu lado tem sido uma nova aventura, repleta de amor, carinho e companheirismo. Este é apenas o começo da nossa linda jornada juntos. ❤️</p>
+
+        <!-- Botão "Motivos para amar você" -->
+        <button onclick="showMotivo()" class="mt-6 bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300">
+            Motivos para amar você
+        </button>
+
         <!-- Player de Música -->
         <div class="mt-8 w-full flex justify-center">
             <audio controls class="w-full">
