@@ -7,17 +7,56 @@
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Heart_coraz%C3%B3n.svg/1024px-Heart_coraz%C3%B3n.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        function startTimer() {
-            let timerElement = document.getElementById('cronometro');
-            let startDate = new Date('2024-10-19T00:00:00');
+                function startTimer() {
+            const startDate = new Date('2023-10-19T00:00:00');
+            const timerElements = {
+                anos: document.getElementById('anos'),
+                meses: document.getElementById('meses'),
+                dias: document.getElementById('dias'),
+                horas: document.getElementById('horas'),
+                minutos: document.getElementById('minutos'),
+                segundos: document.getElementById('segundos')
+            };
+            
             function updateTimer() {
                 let now = new Date();
-                let diff = Math.floor((now - startDate) / 1000);
-                let days = Math.floor(diff / (3600 * 24));
-                let hours = Math.floor((diff % (3600 * 24)) / 3600);
-                let minutes = Math.floor((diff % 3600) / 60);
-                let seconds = diff % 60;
-                timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                let diff = now - startDate;
+                
+                let anos = now.getFullYear() - startDate.getFullYear();
+                let meses = now.getMonth() - startDate.getMonth();
+                let dias = now.getDate() - startDate.getDate();
+                let horas = now.getHours() - startDate.getHours();
+                let minutos = now.getMinutes() - startDate.getMinutes();
+                let segundos = now.getSeconds() - startDate.getSeconds();
+                
+                if (segundos < 0) {
+                    segundos += 60;
+                    minutos--;
+                }
+                if (minutos < 0) {
+                    minutos += 60;
+                    horas--;
+                }
+                if (horas < 0) {
+                    horas += 24;
+                    dias--;
+                }
+                if (dias < 0) {
+                    let lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                    dias += lastMonth.getDate();
+                    meses--;
+                }
+                if (meses < 0) {
+                    meses += 12;
+                    anos--;
+                }
+                
+                timerElements.anos.textContent = anos;
+                timerElements.meses.textContent = meses;
+                timerElements.dias.textContent = dias;
+                timerElements.horas.textContent = horas;
+                timerElements.minutos.textContent = minutos;
+                timerElements.segundos.textContent = segundos;
             }
             setInterval(updateTimer, 1000);
             updateTimer();
