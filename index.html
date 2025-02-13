@@ -58,6 +58,9 @@
             max-width: 100vw;
             overflow-x: hidden;
         }
+        #slideshow {
+            transition: opacity 1s ease-in-out;
+        }
     </style>
 </head>
 <body class="font-sans bg-black text-white flex flex-col items-center justify-start min-h-screen px-4">
@@ -72,9 +75,12 @@
         <p class="text-xl"><span id="cronometro" class="font-bold">0d 0h 0m 0s</span></p>
         <p class="text-base mt-6 px-6">Eu amo compartilhar a vida com você. Cada momento ao seu lado é uma experiência única, cheia de risos, aprendizados e um amor que cresce a cada dia. Seu sorriso ilumina meu caminho, e o simples fato de estar com você torna tudo mais especial. Você é meu apoio, meu amor, minha inspiração. Agradeço todos os dias por ter você ao meu lado, eu amo muito você. 💗</p>
         
-        <!-- Player de Música Estilo Spotify -->
+        <!-- Player de Música -->
         <div class="mt-8 w-full flex justify-center">
-            <iframe style="border-radius:12px" src="Music/dias-de-luta-dias-de-glória.mp3" width="100%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            <audio controls class="w-full">
+                <source src="Music/dias-de-luta-dias-de-glória.mp3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
         </div>
     </section>
 </body>
