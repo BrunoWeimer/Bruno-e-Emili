@@ -7,21 +7,34 @@
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Heart_coraz%C3%B3n.svg/1024px-Heart_coraz%C3%B3n.svg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        function startTimer() {
-            let timerElement = document.getElementById('cronometro');
+          function startTimer() {
             let startDate = new Date('2024-10-19T00:00:00');
             function updateTimer() {
                 let now = new Date();
-                let diff = Math.floor((now - startDate) / 1000);
-                let days = Math.floor(diff / (3600 * 24));
-                let hours = Math.floor((diff % (3600 * 24)) / 3600);
-                let minutes = Math.floor((diff % 3600) / 60);
-                let seconds = diff % 60;
-                timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                let diff = now - startDate;
+
+                let years = now.getFullYear() - startDate.getFullYear();
+                let months = now.getMonth() - startDate.getMonth();
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+                let days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+                let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                let minutes = Math.floor((diff / (1000 * 60)) % 60);
+                let seconds = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('years').textContent = years;
+                document.getElementById('months').textContent = months;
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
             }
             setInterval(updateTimer, 1000);
             updateTimer();
         }
+
 
         function startSlideshow() {
             let images = [
@@ -75,15 +88,22 @@
             alert(motivoAleatorio);
         }
 
-        window.onload = function() {
-            startTimer();
-            startSlideshow();
-        };
+        window.onload = startTimer;
     </script>
     <style>
-        body {
-            max-width: 100vw;
-            overflow-x: hidden;
+        body { max-width: 100vw; overflow-x: hidden; }
+        .timer-box { background-color: #111; padding: 20px; border-radius: 10px; text-align: center; }
+        .timer-box span { font-size: 24px; font-weight: bold; display: block; }
+    </style>
+</head>
+<body class="font-sans bg-black text-white flex flex-col items-center justify-start min-h-screen px-4">
+    <section id="timer" class="grid grid-cols-2 gap-4 mt-10 max-w-sm">
+        <div class="timer-box"><span id="years">0</span>ano</div>
+        <div class="timer-box"><span id="months">0</span>meses</div>
+        <div class="timer-box"><span id="days">0</span>dias</div>
+        <div class="timer-box"><span id="hours">0</span>horas</div>
+        <div class="timer-box"><span id="minutes">0</span>minutos</div>
+        <div class="timer-box"><span id="seconds">0</span>segundos</div>
         }
         #slideshow {
             transition: opacity 1s ease-in-out;
