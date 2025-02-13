@@ -8,28 +8,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         function startTimer() {
-            const startDate = new Date('2024-10-19T00:00:00');
+            let timerElement = document.getElementById('cronometro');
+            let startDate = new Date('2024-10-19T00:00:00');
             function updateTimer() {
                 let now = new Date();
-                let diff = now - startDate;
-                
-                let years = now.getFullYear() - startDate.getFullYear();
-                let months = now.getMonth() - startDate.getMonth();
-                if (months < 0) {
-                    years--;
-                    months += 12;
-                }
-                let days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
-                let hours = now.getHours() - startDate.getHours();
-                let minutes = now.getMinutes() - startDate.getMinutes();
-                let seconds = now.getSeconds() - startDate.getSeconds();
-                
-                document.getElementById('years').textContent = years;
-                document.getElementById('months').textContent = months;
-                document.getElementById('days').textContent = days;
-                document.getElementById('hours').textContent = hours;
-                document.getElementById('minutes').textContent = minutes;
-                document.getElementById('seconds').textContent = seconds;
+                let diff = Math.floor((now - startDate) / 1000);
+                let days = Math.floor(diff / (3600 * 24));
+                let hours = Math.floor((diff % (3600 * 24)) / 3600);
+                let minutes = Math.floor((diff % 3600) / 60);
+                let seconds = diff % 60;
+                timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
             }
             setInterval(updateTimer, 1000);
             updateTimer();
@@ -37,9 +25,16 @@
 
         function startSlideshow() {
             let images = [
-                "Images/1.jpeg",
-                "Images/2.jpeg",
-                "Images/3.jpeg"
+                "Images/WhatsApp Image 2025-02-12 at 00.01.14.jpeg",
+                "Images/WhatsApp Image 2025-02-12 at 00.01.15 (1).jpeg",
+                "Images/WhatsApp Image 2025-02-12 at 00.01.15.jpeg",
+                "Images/WhatsApp Image 2025-02-12 at 00.01.16.jpeg",
+                "Images/WhatsApp Image 2025-02-12 at 00.01.17 (1).jpeg",
+                "Images/WhatsApp Image 2025-02-12 at 00.01.17 (2).jpeg",
+                "Images/WhatsApp Image 2025-02-12 at 00.01.17.jpeg",
+                "Images/WhatsApp Image 2025-02-12 at 00.01.19 (1).jpeg",
+                "Images/WhatsApp Image 2025-02-12 at 00.01.19.jpeg",
+                "Images/WhatsApp Image 2025-02-12 at 00.01.20.jpeg",
             ];
             let imgElement = document.getElementById('slideshow');
             let index = 0;
@@ -56,39 +51,63 @@
         function showMotivo() {
             const motivos = [
                 "Porque você me faz sorrir todos os dias.",
+                "Porque você é a pessoa mais especial da minha vida.",
+                "Porque você me inspira a ser melhor.",
+                "Porque você me entende como ninguém.",
                 "Porque você ilumina meus dias com seu amor.",
-                "Porque você é minha melhor companhia."
+                "Porque você é minha melhor companhia.",
+                "Porque você me faz acreditar no amor verdadeiro.",
+                "Porque você é única e incrível.",
+                "Porque você me completa de todas as formas.",
+                "Porque você é a razão da minha felicidade.",
+                "Porque você tem um coração gigante e cheio de amor.",
+                "Porque você me faz sentir seguro(a) e amado(a).",
+                "Porque você transforma meus dias com sua presença.",
+                "Porque você me apoia em todos os momentos.",
+                "Porque você me faz rir até nos dias mais difíceis.",
+                "Porque você é minha paz e minha alegria.",
+                "Porque você me faz sentir que posso conquistar o mundo.",
+                "Porque você é a melhor coisa que já me aconteceu.",
+                "Porque você me faz acreditar que o amor pode durar para sempre.",
+                "Porque você é simplesmente perfeita para mim."
             ];
-            alert(motivos[Math.floor(Math.random() * motivos.length)]);
+            const motivoAleatorio = motivos[Math.floor(Math.random() * motivos.length)];
+            alert(motivoAleatorio);
         }
-        
+
         window.onload = function() {
             startTimer();
             startSlideshow();
         };
     </script>
+    <style>
+        body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        #slideshow {
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
 </head>
 <body class="font-sans bg-black text-white flex flex-col items-center justify-start min-h-screen px-4">
-    <section class="w-full max-w-[414px] text-center">
+    <section id="home" class="w-full max-w-[414px] flex flex-col items-center text-center">
         <div class="mt-10">
-            <img id="slideshow" src="" alt="Memórias do casal" class="rounded-lg w-full h-auto border-4 border-red-500">
+            <img id="slideshow" src="" alt="Memórias do casal" class="rounded-lg shadow-lg w-full h-auto border-4 border-red-500">
         </div>
         <p class="text-xl mt-6 font-bold bg-red-500 text-white px-4 py-2 rounded-lg">Bruno e Emili 💕</p>
         <p class="text-xl mt-4 font-bold">Compartilhando momentos desde:</p>
         <p class="text-xl font-semibold">19/10/2024</p>
         <p class="text-xl mt-2 font-bold">Tempo juntos:</p>
-        <div class="grid grid-cols-2 gap-4 mt-4 text-center">
-            <div class="bg-gray-800 p-4 rounded-lg"><span id="years" class="text-2xl font-bold">0</span><br>anos</div>
-            <div class="bg-gray-800 p-4 rounded-lg"><span id="months" class="text-2xl font-bold">0</span><br>meses</div>
-            <div class="bg-gray-800 p-4 rounded-lg"><span id="days" class="text-2xl font-bold">0</span><br>dias</div>
-            <div class="bg-gray-800 p-4 rounded-lg"><span id="hours" class="text-2xl font-bold">0</span><br>horas</div>
-            <div class="bg-gray-800 p-4 rounded-lg"><span id="minutes" class="text-2xl font-bold">0</span><br>minutos</div>
-            <div class="bg-gray-800 p-4 rounded-lg"><span id="seconds" class="text-2xl font-bold">0</span><br>segundos</div>
-        </div>
-        <p class="text-base mt-6 px-6">Eu amo compartilhar a vida com você. Cada momento ao seu lado é uma experiência única, cheia de risos, aprendizados e um amor que cresce a cada dia. Você ilumina meu caminho e estar com você torna tudo mais especial. 💗</p>
+        <p class="text-xl"><span id="cronometro" class="font-bold">0d 0h 0m 0s</span></p>
+        <p class="text-base mt-6 px-6">Eu amo compartilhar a vida com você. Cada momento ao seu lado é uma experiência única, cheia de risos, aprendizados e um amor que cresce a cada dia. Seu sorriso ilumina meu caminho, e o simples fato de estar com você torna tudo mais especial. Você é meu apoio, meu amor, minha inspiração. Agradeço todos os dias por ter você ao meu lado, eu amo muito você. 💗</p>
+
+        <!-- Botão "Motivos para amar você" -->
         <button onclick="showMotivo()" class="mt-6 bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300">
             Motivos para amar você
         </button>
+
+        <!-- Player de Música com autoplay -->
         <div class="mt-8 w-full flex justify-center">
             <audio controls autoplay class="w-full">
                 <source src="Music/maria.mp3" type="audio/mpeg">
