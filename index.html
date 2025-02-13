@@ -10,34 +10,15 @@
         function startTimer() {
             let timerElement = document.getElementById('cronometro');
             let startDate = new Date('2024-10-19T00:00:00');
-            
             function updateTimer() {
                 let now = new Date();
-                let diff = now - startDate;
-
-                // Cálculo de anos, meses e dias
-                let years = now.getFullYear() - startDate.getFullYear();
-                let months = now.getMonth() - startDate.getMonth();
-                if (months < 0) {
-                    months += 12;
-                    years--;
-                }
-                let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                let daysInCurrentMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-                days -= daysInCurrentMonth * years + months * 30;
-
-                // Cálculo de horas, minutos e segundos
-                let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                // Atualizar o cronômetro na tela
-                timerElement.innerHTML = `
-                    <div class="text-2xl font-bold">${years} ano(s), ${months} mês(es), ${days} dia(s)</div>
-                    <div class="text-xl">${hours}h ${minutes}m ${seconds}s</div>
-                `;
+                let diff = Math.floor((now - startDate) / 1000);
+                let days = Math.floor(diff / (3600 * 24));
+                let hours = Math.floor((diff % (3600 * 24)) / 3600);
+                let minutes = Math.floor((diff % 3600) / 60);
+                let seconds = diff % 60;
+                timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
             }
-
             setInterval(updateTimer, 1000);
             updateTimer();
         }
@@ -118,7 +99,7 @@
         <p class="text-xl mt-4 font-bold">Juntos desde:</p>
         <p class="text-xl font-semibold">19/10/2024</p>
         <p class="text-xl mt-2 font-bold">Tempo juntos:</p>
-        <div id="cronometro" class="text-center font-bold"></div>
+        <p class="text-xl"><span id="cronometro" class="font-bold">0d 0h 0m 0s</span></p>
         <p class="text-base mt-6 px-6">Eu amo compartilhar a vida com você. Cada momento ao seu lado é uma experiência única, cheia de risos, aprendizados e um amor que cresce a cada dia. Seu sorriso ilumina meu caminho, e o simples fato de estar com você torna tudo mais especial. Você é meu apoio, meu amor, minha inspiração. Agradeço todos os dias por ter você ao meu lado, eu amo muito você. 💗</p>
 
         <!-- Botão "Motivos para amar você" -->
