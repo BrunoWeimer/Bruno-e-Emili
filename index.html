@@ -10,15 +10,22 @@
         function startTimer() {
             let timerElement = document.getElementById('cronometro');
             let startDate = new Date('2024-10-19T00:00:00');
+
             function updateTimer() {
                 let now = new Date();
-                let diff = Math.floor((now - startDate) / 1000);
-                let days = Math.floor(diff / (3600 * 24));
-                let hours = Math.floor((diff % (3600 * 24)) / 3600);
-                let minutes = Math.floor((diff % 3600) / 60);
-                let seconds = diff % 60;
-                timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                let diff = now - startDate;
+
+                let months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+                let years = Math.floor(months / 12);
+                months = months % 12;
+                let days = Math.floor(diff / (1000 * 60 * 60 * 24) % 30);
+                let hours = Math.floor(diff / (1000 * 60 * 60) % 24);
+                let minutes = Math.floor(diff / (1000 * 60) % 60);
+                let seconds = Math.floor(diff / 1000 % 60);
+
+                timerElement.textContent = `${years} ano${years !== 1 ? 's' : ''} ${months} meses ${days} dias ${hours}h ${minutes}m ${seconds}s`;
             }
+
             setInterval(updateTimer, 1000);
             updateTimer();
         }
@@ -96,10 +103,10 @@
             <img id="slideshow" src="" alt="Memórias do casal" class="rounded-lg shadow-lg w-full h-auto border-4 border-red-500">
         </div>
         <p class="text-xl mt-6 font-bold bg-red-500 text-white px-4 py-2 rounded-lg">Bruno e Emili 💕</p>
-        <p class="text-xl mt-4 font-bold">Compartilhando momentos desde:</p>
+        <p class="text-xl mt-4 font-bold">Juntos desde:</p>
         <p class="text-xl font-semibold">19/10/2024</p>
         <p class="text-xl mt-2 font-bold">Tempo juntos:</p>
-        <p class="text-xl"><span id="cronometro" class="font-bold">0d 0h 0m 0s</span></p>
+        <p class="text-xl"><span id="cronometro" class="font-bold">0 anos 0 meses 0 dias 0h 0m 0s</span></p>
         <p class="text-base mt-6 px-6">Eu amo compartilhar a vida com você. Cada momento ao seu lado é uma experiência única, cheia de risos, aprendizados e um amor que cresce a cada dia. Seu sorriso ilumina meu caminho, e o simples fato de estar com você torna tudo mais especial. Você é meu apoio, meu amor, minha inspiração. Agradeço todos os dias por ter você ao meu lado, eu amo muito você. 💗</p>
 
         <!-- Botão "Motivos para amar você" -->
