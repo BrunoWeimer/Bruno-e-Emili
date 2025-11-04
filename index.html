@@ -7,148 +7,11 @@
     <meta name="description" content="Página dedicada ao amor entre Bruno e Emili, com lembranças, frases e músicas." />
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Heart_coraz%C3%B3n.svg/1024px-Heart_coraz%C3%B3n.svg.png" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            max-width: 100vw;
-            overflow-x: hidden;
-        }
-        #slideshow {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        #slideshow.fade-in {
-            opacity: 1;
-        }
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 50;
-        }
-        .modal video {
-            max-width: 90vw;
-            max-height: 80vh;
-        }
-        img.thumb {
-            cursor: pointer;
-            border: 2px solid #f87171;
-            border-radius: 0.5rem;
-            transition: opacity 0.3s;
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-        img.thumb:hover {
-            opacity: 0.8;
-        }
-    </style>
-    <script>
-        function startTimer() {
-            let timerElement = document.getElementById('cronometro');
-            let startDate = new Date('2024-10-19T00:00:00');
-
-            function updateTimer() {
-                let now = new Date();
-                let diff = now - startDate;
-
-                let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                let years = Math.floor(days / 365);
-                let months = Math.floor((days % 365) / 30);
-                let remainingDays = days - (years * 365 + months * 30);
-                let hours = Math.floor(diff / (1000 * 60 * 60) % 24);
-                let minutes = Math.floor(diff / (1000 * 60) % 60);
-                let seconds = Math.floor(diff / 1000 % 60);
-
-                timerElement.textContent = `${years} ano${years !== 1 ? 's' : ''} ${months} meses ${remainingDays} dias ${hours}h ${minutes}m ${seconds}s`;
-            }
-
-            setInterval(updateTimer, 1000);
-            updateTimer();
-        }
-
-        function startSlideshow() {
-            let images = [
-                "Images/WhatsApp Image 2025-02-12 at 00.01.14.jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.15 (1).jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.15.jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.16.jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.17 (1).jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.17 (2).jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.17.jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.19 (1).jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.19.jpeg",
-                "Images/WhatsApp Image 2025-02-12 at 00.01.20.jpeg",
-            ];
-            let imgElement = document.getElementById('slideshow');
-            let index = 0;
-
-            function changeImage() {
-                imgElement.classList.remove("fade-in");
-                setTimeout(() => {
-                    imgElement.src = images[index];
-                    imgElement.classList.add("fade-in");
-                }, 200);
-                index = (index + 1) % images.length;
-            }
-
-            setInterval(changeImage, 5000);
-            changeImage();
-        }
-
-        function showMotivo() {
-            const motivos = [
-                "Porque você me faz sorrir todos os dias.",
-                "Porque você é a pessoa mais especial da minha vida.",
-                "Porque você me inspira a ser melhor.",
-                "Porque você me entende como ninguém.",
-                "Porque você ilumina meus dias com seu amor.",
-                "Porque você é minha melhor companhia.",
-                "Porque você me faz acreditar no amor verdadeiro.",
-                "Porque você é única e incrível.",
-                "Porque você me completa de todas as formas.",
-                "Porque você é a razão da minha felicidade.",
-                "Porque você tem um coração gigante e cheio de amor.",
-                "Porque você me faz sentir seguro(a) e amado(a).",
-                "Porque você transforma meus dias com sua presença.",
-                "Porque você me apoia em todos os momentos.",
-                "Porque você me faz rir até nos dias mais difíceis.",
-                "Porque você é minha paz e minha alegria.",
-                "Porque você me faz sentir que posso conquistar o mundo.",
-                "Porque você é a melhor coisa que já me aconteceu.",
-                "Porque você me faz acreditar que o amor pode durar para sempre.",
-                "Porque você é simplesmente perfeita para mim."
-            ];
-            const motivoAleatorio = motivos[Math.floor(Math.random() * motivos.length)];
-            alert(motivoAleatorio);
-        }
-
-        function openModal(videoSrc) {
-            const modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.innerHTML = `
-                <div onclick="this.parentElement.remove()" class="absolute top-4 right-4 text-white text-2xl cursor-pointer">&times;</div>
-                <video controls autoplay>
-                    <source src="${videoSrc}" type="video/mp4" />
-                    Seu navegador não suporta vídeo.
-                </video>
-            `;
-            document.body.appendChild(modal);
-        }
-
-        window.onload = function() {
-            startTimer();
-            startSlideshow();
-        };
-    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body class="font-sans bg-black text-gray-200 flex flex-col items-center justify-start min-h-screen px-4">
-    <section id="home" class="w-full max-w-[414px] flex flex-col items-center text-center">
+    <main id="home" class="w-full max-w-[414px] flex flex-col items-center text-center">
         <div class="mt-10">
             <img id="slideshow" src="" alt="Foto do casal Bruno e Emili" class="rounded-lg shadow-lg w-full h-auto border-4 border-red-500" />
         </div>
@@ -158,30 +21,29 @@
         <p class="text-xl"><span id="cronometro" class="font-bold">0 anos 0 meses 0 dias 0h 0m 0s</span></p>
         <p class="text-base mt-6 px-6">Eu amo compartilhar a vida com você. Cada momento ao seu lado é uma experiência única, cheia de risos, aprendizados e um amor que cresce a cada dia. Seu sorriso ilumina meu caminho, e o simples fato de estar com você torna tudo mais especial. Você é meu apoio, meu amor, minha inspiração. Agradeço todos os dias por ter você ao meu lado, eu amo muito você. 💗</p>
 
-        <button onclick="showMotivo()" title="Clique para ver um motivo aleatório do meu amor por você" class="mt-6 bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300">
+        <button id="motivoBtn" class="mt-6 bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300">
             Motivos para amar você
         </button>
 
         <div class="mt-8 w-full flex justify-center">
-            <audio controls autoplay class="w-full">
+            <audio controls class="w-full">
                 <source src="Music/maria.mp3" type="audio/mpeg" />
                 Seu navegador não suporta o elemento de áudio.
             </audio>
         </div>
 
-        <!-- Galeria de Vídeos -->
-        <div class="mt-10 w-full px-4">
+        <section class="mt-10 w-full px-4">
             <h2 class="text-2xl font-bold mb-4 text-center text-red-400">Nossos Momentos em Vídeo</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <img src="Videos/thumb1.jpg" alt="Thumb 1" class="thumb" onclick="openModal('Videos/video1.mp4')" />
-                <img src="Videos/thumb2.jpg" alt="Thumb 2" class="thumb" onclick="openModal('Videos/video2.mp4')" />
-                <img src="Videos/thumb3.jpg" alt="Thumb 3" class="thumb" onclick="openModal('Videos/video3.mp4')" />
-                <img src="Videos/thumb4.jpg" alt="Thumb 4" class="thumb" onclick="openModal('Videos/video4.mp4')" />
-                <img src="Videos/thumb5.jpg" alt="Thumb 5" class="thumb" onclick="openModal('Videos/video5.mp4')" />
-                <img src="Videos/thumb6.jpg" alt="Thumb 6" class="thumb" onclick="openModal('Videos/video6.mp4')" />
-                <img src="Videos/thumb7.jpg" alt="Thumb 7" class="thumb" onclick="openModal('Videos/video7.mp4')" />
+                <img src="Videos/thumb1.jpg" alt="Thumb vídeo 1" class="thumb" onclick="openModal('Videos/video1.mp4')" />
+                <img src="Videos/thumb2.jpg" alt="Thumb vídeo 2" class="thumb" onclick="openModal('Videos/video2.mp4')" />
+                <img src="Videos/thumb3.jpg" alt="Thumb vídeo 3" class="thumb" onclick="openModal('Videos/video3.mp4')" />
+                <img src="Videos/thumb4.jpg" alt="Thumb vídeo 4" class="thumb" onclick="openModal('Videos/video4.mp4')" />
+                <img src="Videos/thumb5.jpg" alt="Thumb vídeo 5" class="thumb" onclick="openModal('Videos/video5.mp4')" />
+                <img src="Videos/thumb6.jpg" alt="Thumb vídeo 6" class="thumb" onclick="openModal('Videos/video6.mp4')" />
+                <img src="Videos/thumb7.jpg" alt="Thumb vídeo 7" class="thumb" onclick="openModal('Videos/video7.mp4')" />
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 </body>
 </html>
