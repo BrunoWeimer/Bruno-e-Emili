@@ -1,49 +1,78 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bruno e Emili</title>
-    <meta name="description" content="Página dedicada ao amor entre Bruno e Emili, com lembranças, frases e músicas." />
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Heart_coraz%C3%B3n.svg/1024px-Heart_coraz%C3%B3n.svg.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/main.js" defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bruno & Emili — Nosso Amor</title>
+  <meta name="description" content="Página dedicada ao amor entre Bruno e Emili, com lembranças, frases e músicas." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
 </head>
-<body class="font-sans bg-black text-gray-200 flex flex-col items-center justify-start min-h-screen px-4">
-    <main id="home" class="w-full max-w-[414px] flex flex-col items-center text-center">
-        <div class="mt-10">
-            <img id="slideshow" src="" alt="Foto do casal Bruno e Emili" class="rounded-lg shadow-lg w-full h-auto border-4 border-red-500" />
+<body>
+  <div class="page-bg">
+    <header class="topbar">
+      <div class="brand">Bruno & Emili <span class="heart">❤</span></div>
+    </header>
+
+    <main class="container">
+      <section class="hero card">
+        <div class="hero-media">
+          <img id="heroImage" src="Images/img1.jpeg" alt="Foto do casal" />
         </div>
-        <p class="text-xl mt-6 font-bold bg-red-500 text-white px-3 py-2 rounded-lg">Bruno e Emili 💕</p>
-        <p class="text-xl font-semibold">Desde 19 de Outubro de 2024</p>
-        <p class="text-xl mt-2 font-bold">Compartilhando momentos há</p>
-        <p class="text-xl"><span id="cronometro" class="font-bold">0 anos 0 meses 0 dias 0h 0m 0s</span></p>
-        <p class="text-base mt-6 px-6">Eu amo compartilhar a vida com você. Cada momento ao seu lado é uma experiência única, cheia de risos, aprendizados e um amor que cresce a cada dia. Seu sorriso ilumina meu caminho, e o simples fato de estar com você torna tudo mais especial. Você é meu apoio, meu amor, minha inspiração. Agradeço todos os dias por ter você ao meu lado, eu amo muito você. 💗</p>
+        <div class="hero-content">
+          <h1 class="names">Bruno & Emili</h1>
+          <p class="since">Desde <strong>19 de Outubro de 2024</strong></p>
+          <div class="timer" aria-live="polite"><span id="cronometro">0 anos 0 meses 0 dias 0h 0m 0s</span></div>
+          <p class="lead">Cada dia ao seu lado é um novo capítulo. Obrigado por ser minha paz, minha alegria e meu lar.</p>
 
-        <button id="motivoBtn" class="mt-6 bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300">
-            Motivos para amar você
-        </button>
-
-        <div class="mt-8 w-full flex justify-center">
-            <audio controls class="w-full">
-                <source src="Music/maria.mp3" type="audio/mpeg" />
-                Seu navegador não suporta o elemento de áudio.
-            </audio>
+          <div class="actions">
+            <button id="motivoBtn" class="btn primary">Motivos para amar você</button>
+            <button id="playMusicBtn" class="btn ghost" title="Tocar nossa música">Tocar nossa música</button>
+          </div>
+          <audio id="mainAudio" src="Music/maria.mp3" preload="auto"></audio>
         </div>
+      </section>
 
-        <section class="mt-10 w-full px-4">
-            <h2 class="text-2xl font-bold mb-4 text-center text-red-400">Nossos Momentos em Vídeo</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <img src="Videos/thumb1.jpg" alt="Thumb vídeo 1" class="thumb" onclick="openModal('Videos/video1.mp4')" />
-                <img src="Videos/thumb2.jpg" alt="Thumb vídeo 2" class="thumb" onclick="openModal('Videos/video2.mp4')" />
-                <img src="Videos/thumb3.jpg" alt="Thumb vídeo 3" class="thumb" onclick="openModal('Videos/video3.mp4')" />
-                <img src="Videos/thumb4.jpg" alt="Thumb vídeo 4" class="thumb" onclick="openModal('Videos/video4.mp4')" />
-                <img src="Videos/thumb5.jpg" alt="Thumb vídeo 5" class="thumb" onclick="openModal('Videos/video5.mp4')" />
-                <img src="Videos/thumb6.jpg" alt="Thumb vídeo 6" class="thumb" onclick="openModal('Videos/video6.mp4')" />
-                <img src="Videos/thumb7.jpg" alt="Thumb vídeo 7" class="thumb" onclick="openModal('Videos/video7.mp4')" />
-            </div>
-        </section>
+      <section class="videos card">
+        <h2>Nossos Momentos em Vídeo</h2>
+        <div class="grid" id="videoGrid">
+          <!-- Thumbnails will use files from /Videos if present -->
+          <div class="thumb"><img src="Videos/thumb1.jpg" alt="vídeo 1" data-video="Videos/video1.mp4"></div>
+          <div class="thumb"><img src="Videos/thumb2.jpg" alt="vídeo 2" data-video="Videos/video2.mp4"></div>
+          <div class="thumb"><img src="Videos/thumb3.jpg" alt="vídeo 3" data-video="Videos/video3.mp4"></div>
+          <div class="thumb"><img src="Videos/thumb4.jpg" alt="vídeo 4" data-video="Videos/video4.mp4"></div>
+        </div>
+      </section>
+
+      <footer class="card footer">
+        <p>Com amor, <strong>Bruno</strong> 💗</p>
+      </footer>
     </main>
+  </div>
+
+  <!-- Modal for video -->
+  <div id="videoModal" class="modal" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-modal="true">
+      <button class="modal-close" aria-label="Fechar">&times;</button>
+      <video id="modalVideo" controls playsinline></video>
+    </div>
+  </div>
+
+  <script>
+    // small fallback: if Images/img1.jpeg doesn't exist, try other image names present
+    (function(){
+      const hero = document.getElementById('heroImage');
+      const tries = ['Images/img1.jpeg','Images/whatsapp-2025-02-12-00-01-14.jpeg','Images/WhatsApp Image 2025-02-12 at 00.01.14.jpeg'];
+      let idx=0;
+      function tryLoad(){
+        if(!tries[idx]) return;
+        hero.src = tries[idx];
+        hero.onerror = ()=>{ idx++; tryLoad(); };
+      }
+      tryLoad();
+    })();
+  </script>
 </body>
 </html>
