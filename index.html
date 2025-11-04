@@ -126,4 +126,265 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: shimmer 3.5s infinite
+  animation: shimmer 3.5s infinite linear;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* modal for motivos */
+.motivo-modal {
+  position: fixed; inset: 0; display:none; align-items:center; justify-content:center;
+  z-index: 9999; backdrop-filter: blur(4px);
+}
+.motivo-modal.show { display:flex; }
+.motivo-card { background: linear-gradient(180deg,rgba(255,255,255,0.98), #fff); color:#111; padding:18px 20px; border-radius:14px; max-width:420px; text-align:center; box-shadow:0 14px 40px rgba(2,6,23,0.4); }
+.motivo-card p{ margin:0 0 12px; font-weight:600; }
+
+/* small visual hint for autoplay blocked */
+.autoplay-hint{ color: rgba(255,159,177,0.95); font-weight:700; font-size:13px; margin-left:8px; }
+
+/* tiny heart icon */
+.icon-heart { display:inline-block; width:18px; height:18px; vertical-align:middle; margin-right:6px; }
+</style>
+
+<section class="hero-top" id="heroTop">
+  <canvas id="particles"></canvas>
+
+  <div class="hero-card" role="region" aria-labelledby="heroTitle">
+    <div class="hero-media" aria-hidden="true">
+      <img id="heroImage" src="Images/img1.jpeg" alt="Foto do casal Bruno e Emili">
+    </div>
+
+    <div class="hero-content">
+      <div class="h-strap" aria-hidden="true">Bruno & Emili <span class="float-heart">❤</span></div>
+      <h1 id="heroTitle" class="names">Bruno & Emili</h1>
+      <div class="since">Desde <strong>19 de Outubro de 2024</strong></div>
+
+      <div class="timer" id="cronometro" aria-live="polite">0 anos 0 meses 0 dias 0h 0m 0s</div>
+
+      <p class="lead">Eu amo compartilhar a vida com você. Cada momento ao seu lado é uma experiência única, cheia de risos, aprendizados e um amor que cresce a cada dia.</p>
+
+      <div class="actions">
+        <button id="motivoBtnHero" class="btn primary" aria-haspopup="dialog">Motivos para amar você</button>
+        <button id="playMusicHero" class="btn ghost" title="Tocar nossa música">Tocar música</button>
+      </div>
+
+      <div class="controls" style="margin-top:12px;">
+        <audio id="heroAudio" src="Music/maria.mp3" preload="auto"></audio>
+        <div id="autoplayHint" class="autoplay-hint" aria-hidden="true" style="display:none">Toque manual necessário ▶</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Motivo modal -->
+<div id="motivoModal" class="motivo-modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="motivo-card" role="document">
+    <p id="motivoText">Porque você me faz sorrir todos os dias.</p>
+    <button id="fecharMotivo" class="btn ghost">Fechar</button>
+  </div>
+</div>
+
+<script>
+/* --- Premium Hero JS: particles, timer, audio & modal --- */
+
+// ---------- Utility: pick first existing image (helps GH Pages path issues) ----------
+(function ensureHeroImage(){
+  const img = document.getElementById('heroImage');
+  const fallbackNames = [
+    'Images/img1.jpeg',
+    'Images/img1.jpg',
+    'Images/whatsapp-2025-02-12-00-01-14.jpeg',
+    'Images/WhatsApp Image 2025-02-12 at 00.01.14.jpeg'
+  ];
+  // if current path doesn't load, try fallback
+  img.addEventListener('error', () => {
+    for (let p of fallbackNames) {
+      if (p === img.src) continue;
+      // try set and break on success (browser will fire error if not found, so loop)
+      img.src = p;
+      break;
+    }
+  }, { once: true });
+})();
+
+// ---------- Timer (calendar-aware) ----------
+(function startTimer(){
+  const el = document.getElementById('cronometro');
+  const startDate = new Date('2024-10-19T00:00:00');
+
+  function pad(n){ return n<10?('0'+n):n; }
+
+  function update(){
+    const now = new Date();
+    let y1 = startDate.getFullYear(), m1 = startDate.getMonth(), d1 = startDate.getDate();
+    let y2 = now.getFullYear(), m2 = now.getMonth(), d2 = now.getDate();
+    let years = y2 - y1, months = m2 - m1, days = d2 - d1;
+    if (days < 0) { const prev = new Date(y2, m2, 0); days += prev.getDate(); months--; }
+    if (months < 0) { months += 12; years--; }
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const sinceMidnightMs = now - startOfToday;
+    const hours = Math.floor(sinceMidnightMs / (1000*60*60));
+    const minutes = Math.floor((sinceMidnightMs / (1000*60)) % 60);
+    const seconds = Math.floor((sinceMidnightMs / 1000) % 60);
+    el.textContent = `${years} ano${years!==1?'s':''} ${months} mes${months!==1?'es':''} ${days} dia${days!==1?'s':''} ${hours}h ${minutes}m ${seconds}s`;
+  }
+  update();
+  setInterval(update, 1000);
+})();
+
+// ---------- Particles (floating hearts) ----------
+(function particlesInit(){
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let w=0,h=0, DPR = Math.max(window.devicePixelRatio || 1, 1);
+
+  function resize(){
+    w = canvas.width = Math.floor(canvas.clientWidth * DPR);
+    h = canvas.height = Math.floor(canvas.clientHeight * DPR);
+    canvas.style.width = canvas.clientWidth + 'px';
+    canvas.style.height = canvas.clientHeight + 'px';
+    ctx.scale(DPR, DPR);
+  }
+  window.addEventListener('resize', ()=>{ resize(); });
+
+  const hearts = [];
+  function makeHeart(x,y,scale,vx,vy,rot,omega,life){
+    return {x,y,scale,vx,vy,rot,omega,life,age:0,alpha:1};
+  }
+
+  function spawn(){
+    // spawn near top area with random x
+    const cx = Math.random() * canvas.clientWidth;
+    const cy = canvas.clientHeight * (0.05 + Math.random()*0.25);
+    const s = 0.9 + Math.random()*0.9;
+    const vx = (Math.random()-0.5)*0.6;
+    const vy = 0.2 + Math.random()*0.6;
+    const rot = (Math.random()-0.5)*0.6;
+    const omega = (Math.random()-0.5)*0.02;
+    const life = 7000 + Math.random()*8000;
+    hearts.push(makeHeart(cx, cy, s, vx, vy, rot, omega, life));
+    // limit
+    if (hearts.length > 60) hearts.splice(0, hearts.length-60);
+  }
+
+  // draw heart path
+  function drawHeart(x,y,size,alpha,rot){
+    ctx.save();
+    ctx.translate(x,y);
+    ctx.rotate(rot);
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    const s = size;
+    ctx.moveTo(0, -s/2);
+    ctx.bezierCurveTo(s, -s*0.9, s*1.2, s*0.4, 0, s);
+    ctx.bezierCurveTo(-s*1.2, s*0.4, -s, -s*0.9, 0, -s/2);
+    ctx.closePath();
+    // fill gradient
+    const g = ctx.createLinearGradient(-s,s, s,-s);
+    g.addColorStop(0, "rgba(255,107,129,0.95)");
+    g.addColorStop(0.5, "rgba(255,140,170,0.95)");
+    g.addColorStop(1, "rgba(255,179,199,0.9)");
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function tick(ts){
+    if (!w || !h) resize();
+    ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+    // spawn occasionally
+    if (Math.random() < 0.28) spawn();
+    for (let i=hearts.length-1;i>=0;i--){
+      const H = hearts[i];
+      H.x += H.vx * 1.6;
+      H.y -= H.vy * 0.6;
+      H.vx += (Math.random()-0.5)*0.02;
+      H.rot += H.omega;
+      H.age += 16;
+      H.alpha = Math.max(0, 1 - H.age / H.life);
+      const size = 10 * H.scale + (H.age/1200);
+      drawHeart(H.x, H.y, size, H.alpha, H.rot);
+      if (H.y < -40 || H.alpha <= 0.02) hearts.splice(i,1);
+    }
+    requestAnimationFrame(tick);
+  }
+  resize();
+  requestAnimationFrame(tick);
+})();
+
+// ---------- Motivos modal ----------
+(function motivos(){
+  const btn = document.getElementById('motivoBtnHero');
+  const modal = document.getElementById('motivoModal');
+  const text = document.getElementById('motivoText');
+  const fechar = document.getElementById('fecharMotivo');
+  const motivos = [
+    "Porque você me faz sorrir todos os dias.",
+    "Porque você é a pessoa mais especial da minha vida.",
+    "Porque você me inspira a ser melhor.",
+    "Porque você me entende como ninguém.",
+    "Porque você ilumina meus dias com seu amor.",
+    "Porque você é minha melhor companhia.",
+    "Porque você transforma meus dias com sua presença."
+  ];
+
+  function open(){
+    text.textContent = motivos[Math.floor(Math.random()*motivos.length)];
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden','false');
+    // prevent page scroll
+    document.body.style.overflow = 'hidden';
+  }
+  function close(){
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  btn.addEventListener('click', open);
+  fechar.addEventListener('click', close);
+  modal.addEventListener('click', (e)=>{ if (e.target === modal) close(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+})();
+
+// ---------- Audio autoplay attempt with graceful fallback ----------
+(function audioAutoplay(){
+  const audio = document.getElementById('heroAudio');
+  const playBtn = document.getElementById('playMusicHero');
+  const hint = document.getElementById('autoplayHint');
+
+  // try start right away (user asked autoplay)
+  function tryPlay(){
+    audio.play().then(() => {
+      playBtn.textContent = 'Música tocando ▶';
+      hint.style.display = 'none';
+    }).catch(() => {
+      // blocked - show hint and leave button to user
+      hint.style.display = 'inline-block';
+      playBtn.textContent = 'Clique para tocar ▶';
+    });
+  }
+  tryPlay();
+
+  playBtn.addEventListener('click', ()=> {
+    audio.play().then(()=> {
+      playBtn.textContent = 'Música tocando ▶';
+      hint.style.display = 'none';
+    }).catch(()=> {
+      playBtn.textContent = 'Erro ao tocar';
+    });
+  });
+
+  // also resume on first user interaction (mobile/autoplay policies)
+  function resumeOnInteract(){
+    try { audio.play().catch(()=>{}); } catch(e){}
+    window.removeEventListener('pointerdown', resumeOnInteract);
+    window.removeEventListener('keydown', resumeOnInteract);
+  }
+  window.addEventListener('pointerdown', resumeOnInteract);
+  window.addEventListener('keydown', resumeOnInteract);
+})();
+</script>
+<!-- END: HERO TOP PREMIUM -->
