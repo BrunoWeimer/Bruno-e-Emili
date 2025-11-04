@@ -1,474 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Bruno ❤️ Emili — Tempo Juntos</title>
-<link rel="icon" href="data:,">
-<style>
-  /* ===== Reset & fonts ===== */
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap');
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body,#app{height:100%}
-  body{
-    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    background:linear-gradient(180deg,#0b0b0d 0%, #121216 45%, #180b1a 100%);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:12px;
-  }
-
-  /* ===== Mobile reel container (9:16) ===== */
-  .reel {
-    width:360px; /* desktop preview width */
-    height:640px; /* 9:16 ratio */
-    border-radius:20px;
-    overflow:hidden;
-    position:relative;
-    box-shadow:0 20px 50px rgba(0,0,0,0.6);
-    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    display:flex;
-    flex-direction:column;
-  }
-
-  /* Top promo bar */
-  .promo {
-    background:linear-gradient(90deg,#ff6fa3,#ff4da6);
-    padding:8px 12px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-weight:700;
-    gap:8px;
-    color:#12010e;
-  }
-  .promo small{font-weight:700;font-size:13px}
-
-  /* header */
-  header{
-    padding:18px 16px 6px 16px;
-    text-align:center;
-  }
-  .title {
-    display:flex;
-    gap:8px;
-    align-items:center;
-    justify-content:center;
-    font-weight:800;
-    letter-spacing:0.2px;
-  }
-  .title .heart{
-    color:#ff77d4;
-    font-size:18px;
-    transform:translateY(-1px);
-  }
-  .subtitle{font-size:13px;color:#d9cfe0;margin-top:6px;font-weight:500}
-
-  /* Counter */
-  .counter {
-    margin:10px 16px 0 16px;
-    padding:14px;
-    border-radius:14px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    box-shadow:inset 0 -1px 0 rgba(255,255,255,0.02);
-    text-align:center;
-  }
-  .counter .big{
-    font-size:20px;
-    color:#ffd6ea;
-    font-weight:700;
-    margin-bottom:6px;
-  }
-  .counter .small{
-    font-size:13px;color:#e9d8ee;
-  }
-
-  /* timeline / bodas */
-  .bodas {
-    margin:12px 16px;
-    padding:12px;
-    border-radius:12px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    flex:0 0 auto;
-  }
-  .bodas h3{font-size:14px;color:#ff4da6;margin-bottom:8px}
-  .bodas ul{display:flex;flex-wrap:wrap;gap:6px;list-style:none}
-  .bodas li{
-    background:rgba(255,255,255,0.02);
-    padding:6px 8px;border-radius:10px;font-size:12px;color:#f6e8f3;
-  }
-
-  /* gallery */
-  .gallery{
-    display:flex;gap:8px;
-    padding:12px 16px;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-  }
-  .gallery img{width:92px;height:140px;object-fit:cover;border-radius:12px;flex:0 0 auto}
-
-  /* bottom controls */
-  .controls{
-    margin-top:auto;
-    padding:12px 16px 20px 16px;
-    display:flex;gap:10px;flex-direction:column;
-  }
-  .row{display:flex;gap:10px}
-  .btn{
-    flex:1;
-    background:linear-gradient(180deg,#ff4da6,#ff77d4);
-    border:none;padding:12px;border-radius:12px;color:#18000a;font-weight:700;
-    cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.35);
-  }
-  .btn.secondary{
-    background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff;font-weight:600;
-  }
-  .center{justify-content:center}
-
-  /* small footer */
-  .foot{font-size:12px;text-align:center;color:#cdb6ce;padding:10px 12px}
-
-  /* responsiveness (allow scaling on wide screens) */
-  @media(min-width:700px){
-    .reel{transform:scale(1.05)}
-  }
-  @media(max-width:420px){
-    body{padding:6px}
-    .reel{width:100vw;max-width:420px;height:calc(100vh - 20px);border-radius:14px}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bruno & Emili ❤️</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app" aria-live="polite">
-    <div class="reel" role="application" aria-label="Tempo juntos — Bruno e Emili">
-      <!-- Promo top -->
-      <div class="promo" id="promoBar">
-        <small id="promoText">Hoje com 50% OFF</small>
-        <div style="display:flex;gap:8px;align-items:center">
-          <small id="promoCountdown">00:23:59</small>
-        </div>
-      </div>
+  <div class="container">
+    <h1>Bruno & Emili ❤️</h1>
+    <p class="since">Desde 19/10/2024</p>
 
-      <!-- Header -->
-      <header>
-        <div class="title">
-          <div style="font-size:20px">Bruno</div>
-          <div class="heart">❤️</div>
-          <div style="font-size:20px">Emili</div>
-        </div>
-        <div class="subtitle" id="sinceText">Desde 19/10/2024</div>
-      </header>
-
-      <!-- Counter -->
-      <div class="counter" aria-hidden="false">
-        <div class="big" id="timeTogether">0 anos • 0 meses • 0 dias</div>
-        <div class="small" id="timeClock">00:00:00</div>
-      </div>
-
-      <!-- Bodas timeline -->
-      <div class="bodas" aria-label="Lista de bodas">
-        <h3>Nossas bodas</h3>
-        <ul id="bodasList">
-          <!-- Será preenchido por JS -->
-        </ul>
-      </div>
-
-      <!-- Gallery (swipe) -->
-      <div class="gallery" id="gallery">
-        <!-- substitua src pelas suas imagens -->
-        <img src="https://placekitten.com/300/500" alt="Foto 1">
-        <img src="https://placekitten.com/301/500" alt="Foto 2">
-        <img src="https://placekitten.com/302/500" alt="Foto 3">
-        <img src="https://placekitten.com/303/500" alt="Foto 4">
-      </div>
-
-      <!-- Controls -->
-      <div class="controls">
-        <div class="row">
-          <button class="btn" id="downloadStoriesBtn">⬇️ Baixar Stories</button>
-          <button class="btn secondary" id="shareBtn">📤 Compartilhar</button>
-        </div>
-        <div class="row center">
-          <button class="btn secondary" id="copyLinkBtn">🔗 Copiar link</button>
-        </div>
-      </div>
-
-      <div class="foot">Feito com ❤️ — abra no celular para melhor experiência</div>
+    <div id="timer" class="timer">
+      <div><span id="days">0</span><small>Dias</small></div>
+      <div><span id="hours">0</span><small>Horas</small></div>
+      <div><span id="minutes">0</span><small>Minutos</small></div>
+      <div><span id="seconds">0</span><small>Segundos</small></div>
     </div>
+
+    <audio controls src="maria.mp3"></audio>
+
+    <div class="gallery">
+      <img src="img/photo1.jpg" alt="">
+      <img src="img/photo2.jpg" alt="">
+      <img src="img/photo3.jpg" alt="">
+    </div>
+
+    <p class="message">Um toque de magia em cada momento juntos 💫</p>
   </div>
 
-<script>
-/* =========================
-   CONFIGURÁVEIS (edite aqui)
-   ========================= */
-const CONFIG = {
-  names: { a: 'Bruno', b: 'Emili' },
-  // start date ISO (use midnight local or add time)
-  startIso: '2024-10-19T00:00:00',
-  // bodas list (meses/years mapping). You can edit labels or order.
-  bodas: [
-    '1 mês — Beijinhos',
-    '3 meses — Laços',
-    '6 meses — Pluminha',
-    '1 ano — Papel',
-    '2 anos — Algodão',
-    '3 anos — Trigo',
-    '4 anos — Flores',
-    '5 anos — Madeira',
-    '10 anos — Estanho',
-    '15 anos — Cristal',
-    '20 anos — Porcelana',
-    '25 anos — Prata',
-    '50 anos — Ouro'
-  ],
-  // Promo text (set empty '' to hide)
-  promoText: 'Hoje com 50% OFF',
-  // promo countdown seconds (for demo). Set to 0 to hide countdown.
-  promoSeconds: 60*60*24 // 24h demo
-};
+  <script>
+    const startDate = new Date('2024-10-19T00:00:00');
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
 
-/* =========================
-   Inicialização DOM
-   ========================= */
-document.getElementById('promoText').textContent = CONFIG.promoText || '';
-const start = new Date(CONFIG.startIso);
-document.querySelector('.title').innerHTML = `<div style="font-size:20px">${escapeHtml(CONFIG.names.a)}</div><div class="heart">❤️</div><div style="font-size:20px">${escapeHtml(CONFIG.names.b)}</div>`;
-document.getElementById('sinceText').textContent = `Desde ${formatDate(start)}`;
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
 
-/* popula bodas */
-const bodasEl = document.getElementById('bodasList');
-CONFIG.bodas.forEach(b => {
-  const li = document.createElement('li');
-  li.textContent = b;
-  bodasEl.appendChild(li);
-});
-
-/* gallery placeholder already present - replace srcs manually if quiser */
-
-/* =========================
-   Contador em tempo real
-   ========================= */
-function updateMainCounter(){
-  const now = new Date();
-  const diffMs = now - start;
-  if(diffMs < 0){
-    document.getElementById('timeTogether').textContent = 'Ainda não começou';
-    document.getElementById('timeClock').textContent = '';
-    return;
-  }
-
-  // compute years, months, days properly by using local date math
-  let years = now.getFullYear() - start.getFullYear();
-  let months = now.getMonth() - start.getMonth();
-  let days = now.getDate() - start.getDate();
-  if (days < 0) {
-    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-    days += prevMonth.getDate();
-    months -= 1;
-  }
-  if (months < 0) { months += 12; years -= 1; }
-
-  const hours = now.getHours().toString().padStart(2,'0');
-  const minutes = now.getMinutes().toString().padStart(2,'0');
-  const seconds = now.getSeconds().toString().padStart(2,'0');
-
-  document.getElementById('timeTogether').textContent = `${years} anos • ${months} meses • ${days} dias`;
-  document.getElementById('timeClock').textContent = `${hours}:${minutes}:${seconds}`;
-}
-updateMainCounter();
-setInterval(updateMainCounter, 1000);
-
-/* promo countdown (visual only) */
-let promoRemaining = CONFIG.promoSeconds;
-function updatePromo(){
-  if(!CONFIG.promoText || promoRemaining <= 0){ document.getElementById('promoCountdown').textContent = ''; return; }
-  const h = Math.floor(promoRemaining/3600).toString().padStart(2,'0');
-  const m = Math.floor((promoRemaining%3600)/60).toString().padStart(2,'0');
-  const s = Math.floor(promoRemaining%60).toString().padStart(2,'0');
-  document.getElementById('promoCountdown').textContent = `${h}:${m}:${s}`;
-  promoRemaining = Math.max(0, promoRemaining - 1);
-}
-updatePromo();
-setInterval(updatePromo, 1000);
-
-
-/* =========================
-   Compartilhar & copiar link
-   ========================= */
-const shareBtn = document.getElementById('shareBtn');
-shareBtn.addEventListener('click', async () => {
-  const shareData = {
-    title: `${CONFIG.names.a} ❤️ ${CONFIG.names.b}`,
-    text: `Nosso tempo juntos — desde ${formatDate(start)}`,
-    url: window.location.href
-  };
-  try {
-    if (navigator.share) await navigator.share(shareData);
-    else throw new Error('no share api');
-  } catch(e){
-    // fallback: copy link
-    await navigator.clipboard.writeText(window.location.href);
-    alert('Link copiado para a área de transferência ✅');
-  }
-});
-
-document.getElementById('copyLinkBtn').addEventListener('click', async () => {
-  await navigator.clipboard.writeText(window.location.href);
-  alert('Link copiado! 💘');
-});
-
-/* =========================
-   Baixar Stories (gera 3 templates PNG 9:16 via canvas)
-   ========================= */
-document.getElementById('downloadStoriesBtn').addEventListener('click', async () => {
-  // templates data: you can add custom templates (background color, text pos, overlay)
-  const templates = [
-    {bg:'#130418', title:'Nosso tempo juntos', subtitle: `${CONFIG.names.a} ❤️ ${CONFIG.names.b}`, accent:'#ff4da6'},
-    {bg:'#07121a', title:`Desde ${formatDate(start)}`, subtitle: `${CONFIG.names.a} • ${CONFIG.names.b}`, accent:'#ffd6ea'},
-    {bg:'linear-gradient(180deg,#0b0b0d,#2b0826)', title:'Amor em cada segundo', subtitle:`${diffHumanReadable(new Date(), start)}`, accent:'#ff77d4'}
-  ];
-
-  // create canvas 1080x1920 (story size)
-  for(let i=0;i<templates.length;i++){
-    const t = templates[i];
-    const canvas = document.createElement('canvas');
-    canvas.width = 1080;
-    canvas.height = 1920;
-    const ctx = canvas.getContext('2d');
-
-    // background
-    if (t.bg.startsWith('linear-gradient')) {
-      // simple gradient fallback
-      const g = ctx.createLinearGradient(0,0,0,canvas.height);
-      g.addColorStop(0,'#0b0b0d');
-      g.addColorStop(1,'#2b0826');
-      ctx.fillStyle = g;
-    } else ctx.fillStyle = t.bg;
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    // subtle vignette
-    const grad = ctx.createRadialGradient(canvas.width/2, canvas.height/3, 0, canvas.width/2, canvas.height/2, Math.max(canvas.width, canvas.height));
-    grad.addColorStop(0, 'rgba(255,255,255,0.02)');
-    grad.addColorStop(1, 'rgba(0,0,0,0.55)');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    // big title
-    ctx.fillStyle = t.accent;
-    ctx.textAlign = 'center';
-    ctx.font = 'bold 72px Inter, sans-serif';
-    ctx.fillText(t.title, canvas.width/2, 420);
-
-    // subtitle
-    ctx.fillStyle = 'rgba(255,255,255,0.95)';
-    ctx.font = '600 44px Inter, sans-serif';
-    wrapText(ctx, t.subtitle, canvas.width/2, 520, 920, 52);
-
-    // large counter in center
-    ctx.fillStyle = 'rgba(255,255,255,0.95)';
-    ctx.font = '800 110px Inter, sans-serif';
-    const central = diffHumanReadableNoUnits(new Date(), start);
-    ctx.fillText(central, canvas.width/2, 1060);
-
-    // small footer
-    ctx.fillStyle = 'rgba(255,255,255,0.6)';
-    ctx.font = '500 28px Inter, sans-serif';
-    ctx.fillText('Compartilhe nos seus Stories ✨', canvas.width/2, canvas.height - 120);
-
-    // export and trigger download
-    const dataUrl = canvas.toDataURL('image/png');
-    downloadDataUrl(dataUrl, `story-${i+1}.png`);
-    await sleep(250); // small gap so downloads don't collide
-  }
-});
-
-/* =========================
-   Helpers
-   ========================= */
-function formatDate(d){
-  const day = String(d.getDate()).padStart(2,'0');
-  const month = String(d.getMonth()+1).padStart(2,'0');
-  const year = d.getFullYear();
-  return `${day}/${month}/${year}`;
-}
-function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-function downloadDataUrl(dataUrl, filename){
-  const a = document.createElement('a');
-  a.href = dataUrl;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-}
-
-function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
-
-/* produce human readable diff: "1 ano, 2 meses" */
-function diffHumanReadable(now, from){
-  // approximate using calendar math
-  let years = now.getFullYear() - from.getFullYear();
-  let months = now.getMonth() - from.getMonth();
-  let days = now.getDate() - from.getDate();
-  if(days<0){ const prev = new Date(now.getFullYear(), now.getMonth(), 0); days += prev.getDate(); months -= 1; }
-  if(months<0){ months += 12; years -= 1; }
-  const parts = [];
-  if(years>0) parts.push(`${years} ano${years>1?'s':''}`);
-  if(months>0) parts.push(`${months} mês${months>1?'es':''}`);
-  if(parts.length===0) parts.push(`${days} dia${days>1?'s':''}`);
-  return parts.join(', ');
-}
-/* shorter: "1a 2m 3d" */
-function diffHumanReadableNoUnits(now, from){
-  let years = now.getFullYear() - from.getFullYear();
-  let months = now.getMonth() - from.getMonth();
-  let days = now.getDate() - from.getDate();
-  if(days<0){ const prev = new Date(now.getFullYear(), now.getMonth(), 0); days += prev.getDate(); months -= 1; }
-  if(months<0){ months += 12; years -= 1; }
-  const pad = n => String(n).padStart(2,'0');
-  return `${years}a ${pad(months)}m ${pad(days)}d`;
-}
-
-/* wrapText helper for canvas */
-function wrapText(ctx, text, x, y, maxWidth, lineHeight){
-  const words = text.split(' ');
-  let line = '';
-  for(let n = 0; n < words.length; n++) {
-    const testLine = line + words[n] + ' ';
-    const metrics = ctx.measureText(testLine);
-    if (metrics.width > maxWidth && n > 0) {
-      ctx.fillText(line, x, y);
-      line = words[n] + ' ';
-      y += lineHeight;
-    } else {
-      line = testLine;
+      daysEl.textContent = days;
+      hoursEl.textContent = hours;
+      minutesEl.textContent = minutes;
+      secondsEl.textContent = seconds;
     }
-  }
-  ctx.fillText(line, x, y);
-}
 
-/* copy fallback for older browsers */
-async function safeClipboardWrite(text){
-  try { await navigator.clipboard.writeText(text); return true; }
-  catch(e){ 
-    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); ta.remove(); return true; } catch(e2){ ta.remove(); return false; }
-  }
-}
-
-/* download helper already defined above */
-
-/* canvas text sanitization done by escapeHtml earlier if needed */
-
-/* ===== Accessibility: announce counter changes (optional) ===== */
-setInterval(()=> {
-  const live = document.getElementById('timeTogether').textContent + ' — ' + document.getElementById('timeClock').textContent;
-  // You could set aria-live region if needed
-},10000);
-</script>
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
 </body>
 </html>
